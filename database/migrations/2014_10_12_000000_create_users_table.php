@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('about'); 
             $table->text('subtitle'); 
-            $table->text('image'); 
+            $table->text('image')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });
