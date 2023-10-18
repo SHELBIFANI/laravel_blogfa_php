@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'about' => $request->about,
-            'image' => $request->file('image')->create('image', 'public'),
+            'image' => $request->file('image')->store('image', 'public'),
             'password' => Hash::make($request->password),
         ]);
 
