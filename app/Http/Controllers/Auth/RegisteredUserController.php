@@ -35,7 +35,7 @@ class RegisteredUserController extends Controller
             'about' => ['required', 'string', 'max:20', 'min:5'],
             'subtitle' => ['required', 'string', 'max:20', 'min:5'],
             'title' => ['required', 'string', 'max:20', 'min:5'],
-            'image' => ['nullable', 'file', 'max:2048', 'mimes:png,jpg'],
+            'image' => ['nullable', 'file', 'max:2048', 'mimes:jpg'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -48,10 +48,11 @@ class RegisteredUserController extends Controller
             'title' => $request->title,
             'subtitle' => $request->subtitle,
             'about' => $request->about,
-            'image' => $request->file('image')->store('image', 'public'),
+            'image' => $request->file('image')->store('images', 'public'),
             'password' => Hash::make($request->password),
         ]);
 
+        // dd($user->image);
         event(new Registered($user));
 
         Auth::login($user);

@@ -25,7 +25,7 @@ class User extends Authenticatable
         'title',
         'about',
         'subtitle',
-        'iamge',
+        'image',
     ];
 
     /**

@@ -17,10 +17,42 @@
         @csrf
         @method('patch')
 
+        <img src="{{ url('storage/'.$user->image) }}" alt="">
+
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="username" :value="__('UserName')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+
+        <div>
+            <x-input-label for="title" :value="__('Title')" />
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $user->title)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('title')" />
+        </div>
+
+        <div>
+            <x-input-label for="about" :value="__('About')" />
+            <x-text-input id="about" name="about" type="text" class="mt-1 block w-full" :value="old('about', $user->about)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('about')" />
+        </div>
+
+        <div>
+            <x-input-label for="subtitle" :value="__('Subtitle')" />
+            <x-text-input id="subtitle" name="subtitle" type="text" class="mt-1 block w-full" :value="old('subtitle', $user->subtitle)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('subtitle')" />
+        </div>
+
+        <div>
+            <x-input-label for="image" :value="__('Subtitle')" />
+            <x-text-input id="image" name="image" type="file" accept="jpg" class="mt-1 block w-full" :value="old('image', $user->image)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
         <div>
