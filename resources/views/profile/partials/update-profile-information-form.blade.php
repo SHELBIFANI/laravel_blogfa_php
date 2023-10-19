@@ -13,51 +13,52 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
-        <img src="{{ url('storage/'.$user->image) }}" alt="">
+        <div class="w-1/3 h-1/3">
+            <img src="{{ url('storage/'.$user->image) }}" alt="" class="object-cover">
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
             <x-input-label for="username" :value="__('UserName')" />
-            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" />
             <x-input-error class="mt-2" :messages="$errors->get('username')" />
         </div>
 
         <div>
             <x-input-label for="title" :value="__('Title')" />
-            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $user->title)" required />
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $user->title)" />
             <x-input-error class="mt-2" :messages="$errors->get('title')" />
         </div>
 
         <div>
             <x-input-label for="about" :value="__('About')" />
-            <x-text-input id="about" name="about" type="text" class="mt-1 block w-full" :value="old('about', $user->about)" required />
+            <x-text-input id="about" name="about" type="text" class="mt-1 block w-full" :value="old('about', $user->about)" />
             <x-input-error class="mt-2" :messages="$errors->get('about')" />
         </div>
 
         <div>
             <x-input-label for="subtitle" :value="__('Subtitle')" />
-            <x-text-input id="subtitle" name="subtitle" type="text" class="mt-1 block w-full" :value="old('subtitle', $user->subtitle)" required />
+            <x-text-input id="subtitle" name="subtitle" type="text" class="mt-1 block w-full" :value="old('subtitle', $user->subtitle)" />
             <x-input-error class="mt-2" :messages="$errors->get('subtitle')" />
         </div>
 
         <div>
-            <x-input-label for="image" :value="__('Subtitle')" />
-            <x-text-input id="image" name="image" type="file" accept="jpg" class="mt-1 block w-full" :value="old('image', $user->image)" required />
+            <x-input-label for="image" :value="__('Image Profile ')" />
+            <x-text-input id="image" name="image" type="file" accept="jpg" class="mt-1 block w-full" :value="old('image', $user->image)" />
             <x-input-error class="mt-2" :messages="$errors->get('image')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
