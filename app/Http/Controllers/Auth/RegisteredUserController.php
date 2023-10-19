@@ -31,13 +31,14 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'username' => ['required', 'string', 'max:20', 'min:5'],
+            'username' => ['required', 'string', 'max:20', 'min:5','unique:'.User::class],
             'about' => ['required', 'string', 'max:20', 'min:5'],
             'subtitle' => ['required', 'string', 'max:20', 'min:5'],
             'title' => ['required', 'string', 'max:20', 'min:5'],
             'image' => ['nullable', 'file', 'max:2048', 'mimes:jpg'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'image' => ['nullable', 'image', 'mimes:jpg,png', 'max:2048'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -51,8 +52,7 @@ class RegisteredUserController extends Controller
             'image' => $request->file('image')->store('images', 'public'),
             'password' => Hash::make($request->password),
         ]);
-
-        // dd($user->image);
+        
         event(new Registered($user));
 
         Auth::login($user);
