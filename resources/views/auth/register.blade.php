@@ -47,7 +47,7 @@
         <!-- ImageProfile -->
         <div class="mt-4">
             <x-input-label for="iamge" :value="__('ProfileImage')" />
-            <x-text-input id="image" class="block mt-1 w-full" type="file" accept="png/jpg" name="image" :value="old('image')" required />
+            <x-text-input id="image" class="block mt-1 w-full" type="file" accept="png/jpg" name="image" :value="old('image')" />
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
         </div>
 
